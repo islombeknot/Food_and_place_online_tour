@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%block content%}
+{% if not request.user.is_authenticated %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+
+<body>
+    <h2>User Registration</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+{%endif%}
+{%endblock%}

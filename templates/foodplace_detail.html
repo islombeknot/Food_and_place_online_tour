@@ -1,0 +1,23 @@
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ foodplace.name }}</title>
+</head>
+<body>
+    <h1>{{ foodplace.name }}</h1>
+    <p>Description: {{ foodplace.description }}</p>
+    <p>Address: {{ foodplace.address }}</p>
+    <h2>Foods:</h2>
+    <ul>
+        {% for food in foods %}
+            <li>{{ food.name }} - {{ food.price }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Categories:</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
