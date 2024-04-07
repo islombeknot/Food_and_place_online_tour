@@ -10,22 +10,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>All Food Places</title>
+        
+     
+    
         <style>
             .card-container {
-                display: flex; /* Set display to flex to create a flex container */
-                flex-wrap: wrap; /* Allow cards to wrap to the next line */
-                justify-content: flex-start; /* Align cards to the start of the flex container */
-                gap: 20px; /* Add some spacing between cards */
+                display: flex; 
+                flex-wrap: wrap;
+                justify-content: flex-start; 
+                gap: 20px; 
             }
     
             .card {
-                width: calc(25% - 20px); /* Set width to 25% of the container width minus the gap */
-                /* Add any additional styling you need for the cards */
+                width: calc(25% - 20px); 
+               
             }
         </style>
-     
-    </head>
-    <body>
         <h1>All Food Places</h1>
         <div class="card-container">
             {% for place in food_places %}
@@ -36,7 +36,7 @@
                         <p class="card-text">{{ place.description }}</p>
                         <p>{{ place.address }}</p>
                         <p>Category: {{ place.category }}</p>
-                        <a href="{% url 'food_detail' place.food_set.first.pk %}" class="btn btn-primary">See menu</a>
+                        <a href="{% url 'food_detail' place.pk %}" class="btn btn-primary">See menu</a>
                     </div>
                 </div>
             {% endfor %}
