@@ -7,7 +7,8 @@ urlpatterns = [
     path('foodplace/<int:pk>/', FoodPlaceDetailView.as_view(), name='food_detail'),
     path('add_comment/', views.add_comment, name='add_comment'),
     path('blog/<int:food_id>/', views.blog, name='blog'),
+    path('add_comment/<int:foodplace_id>/', views.add_comment, name='add_comment'),
     # path('', FoodPlaceListView.as_view(), name='FoodPlaceView'),
     # path('foodplace/<int:id>/', views.food_detail, name='food_detail'),
-    # path('add_comment/<int:food_id>/', AddCommentView.as_view(), name='add_comment'),
+    
 ]

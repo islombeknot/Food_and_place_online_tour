@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base.html'%}
+{%block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h1 class="mt-4 mb-4">Comments</h1>
-                {% for comment in comments %}
-                <li>
-                    <p>User: {{ comment.user }}</p>
-                    <p>Comment: {{ comment.comment }}</p>
-                    <p>Rating: {{ comment.rating }}</p>
-                </li>
-            {% endfor %}
+           
                 {% for comment in comments %}
                 <div class="card mb-3">
                     <div class="card-header">
@@ -38,5 +32,6 @@
             </div>
         </div>
     </div>
+{%endblock%}
 </body>
 </html>

@@ -10,7 +10,7 @@
                         <a class="logo" href="index.html"><img src="{% static 'images/logo.png'%}" alt="#" /></a>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="full">
                         <div class="right_header_info">
                         </div>
@@ -25,15 +25,13 @@
                         {% if not request.user.is_authenticated %}
                         <li class="dinone">Contact Us : <img style="margin-right: 15px;margin-left: 15px;" src="{% static 'images/phone_icon.png'%}" alt="#"><a href="#">+99890 847 18 17 </a></li>
                         <li class="dinone"><img style="margin-right: 15px;" src="{% static 'images/mail_icon.png'%}" alt="#"><a href="#">demo@gmail.com</a></li>
-                        <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="{% static 'images/location_icon.png'%}" alt="#"><a href="#">104 New york , USA</a></li>
+                        <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="{% static 'images/location_icon.png'%}" alt="#"><a href="#">Uzbekistan</a></li>
                         <li class="button_user"><a class="button active" href="{%url 'users:login'%}">Login</a><a class="button" href="{%url 'users:register'%}">Register</a></li>
                         <li><img style="margin-right: 15px;" src="{% static 'images/search_icon.png'%}" alt="#"></li>
                         <div class="slider">
                         {%endif%}
                             <ul>
-                                <button type="submit" id="menu-btn">
-                                    <img src="{% static 'images/menu_icon.png'%}" alt="#">
-                                </button>
+                        
                                 <nav class="navbar navbar-dark bg-dark">
                                     <nav class="navbar navbar-dark bg-dark">
                                         <div class="container-fluid">
@@ -57,7 +55,7 @@
                                                 <li><a class="dropdown-item" href="{% url 'food_place_list'%}">Restaurants</a></li>
                                                 <li><a class="dropdown-item" href="{% url 'blog' food_id=1 %}">Coments</a></li>
                                                 <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item" href="{%url 'users:profile'%}">Profile</a></li>
                                                 </ul>
                                             </li>
                                             <li class="nav-item">

@@ -3,6 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 from .forms import RegisterForm, LoginForm
 
 
@@ -51,5 +54,23 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('index')
+    
+class ProfileView(View):
+    def get(self, request):
+        return render(request, 'users/profile.html')
 
   
+
+def profile(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'paswordingiz muvaffaqiyatli ozgartirildi')
+            return redirect('profile')
+        else:
+            messages.error(request, 'iltimos xatolikni togirlang')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/profile.html', {'form': form})

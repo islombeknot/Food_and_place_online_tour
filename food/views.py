@@ -35,23 +35,21 @@ class FoodPlaceDetailView(DetailView):
 
 
 def add_comment(request, food_id):
-    food = get_object_or_404(FoodPlace, id=food_id)
+    food_place = get_object_or_404(FoodPlace, id=id)
     
     if request.method == 'POST':
-        form = FoodCommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.foodplace = food
-            comment.user = request.user
-            comment.save()
-            return redirect('food_detail', pk=food_id)
+        comment_text = request.POST.get('comment')
+        rating = request.POST.get('rating')
+        user = request.user  
+        
+        
+        comment = FoodComment.objects.create(user=user, comment=comment_text, rating=rating, foodplace=food_place)
+        
+        
+        return redirect('success_page')  
     else:
-        form = FoodCommentForm()
-
-    
-    comments = FoodComment.objects.filter(foodplace=food)
-
-    return render(request, 'blog.html', {'form': form, 'food': food, 'comments': comments})
+        return render(request, 'blog.html')
+        
 
     
 def show_comments(request):
