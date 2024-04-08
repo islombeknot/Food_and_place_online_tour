@@ -17,6 +17,7 @@ class FoodPlace(models.Model):
     image = models.ImageField(upload_to='place_pics', blank=True)
     address = models.CharField(max_length=255)
     category = models.ForeignKey(Category,related_name=('cat'), on_delete=models.CASCADE)
+    favorite_users = models.ManyToManyField(User, related_name='favorite_food_places')
 
     @classmethod
     def sorted_by_category(cls):
@@ -43,9 +44,9 @@ class Food(models.Model):
    
 class FoodComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    rating = models.IntegerField()
     foodplace = models.ForeignKey(FoodPlace, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=255)
-    rating = models.IntegerField() 
 
 
     def __str__(self):

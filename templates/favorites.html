@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%block content%}
+
+{% for food_place in food_places %}
+    <div class="card mb-3">
+       
+        <div class="card-footer">
+            <form action="{% url 'toggle_favorite' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="food_place_id" value="{{ food_place.id }}">
+                <button type="submit" class="btn btn-primary">
+                    {% if food_place.is_favorite %}
+                        Remove from Favorites
+                    {% else %}
+                        Add to Favorites
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
+
+{%endblock%}

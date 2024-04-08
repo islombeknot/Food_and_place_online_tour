@@ -12,26 +12,53 @@
             <div class="col-md-8 mx-auto">
                 <h1 class="mt-4 mb-4">Comments</h1>
            
-                {% for comment in comments %}
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Food: {{ comment.food.name }}
+                
+
+                
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                {% for comment in comments %}
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            Foodplace comment: 
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Foodplace: {{ comment.foodplace.name }}</h5>
+                                            <p class="card-text">User: {{ comment.user }}</p>
+                                            <p class="card-text">Comment: {{ comment.comment }}</p>
+                                            <p class="card-text">Rating: {{ comment.rating }}</p>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="alert alert-info" role="alert">
+                                        No comments yet.
+                                    </div>
+                                {% endfor %}
+                
+                                <!-- Pagination -->
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        {% if comments.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ comments.previous_page_number }}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo; Previous</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        <li class="page-item disabled"><span class="page-link">Page {{ comments.number }} of {{ comments.paginator.num_pages }}</span></li>
+                                        {% if comments.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ comments.next_page_number }}" aria-label="Next">
+                                                    <span aria-hidden="true">Next &raquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Foodplace: {{ comment.foodplace.name }}</h5>
-                        <p class="card-text">User: {{ comment.user }}</p>
-                        <p class="card-text">Comment: {{ comment.comment }}</p>
-                        <p class="card-text">Rating: {{ comment.rating }}</p>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="alert alert-info" role="alert">
-                    No comments yet.
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-{%endblock%}
+{% endblock %}
 </body>
 </html>
