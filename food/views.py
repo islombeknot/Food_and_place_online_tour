@@ -94,3 +94,7 @@ def blog(request, food_id):
         comments = paginator.page(paginator.num_pages)
 
     return render(request, 'blog.html', {'comments': comments, 'foodplace': foodplace})
+
+def food_list(request):
+    foods = Food.objects.all()
+    return render(request, 'favorites.html', {'foods': foods})

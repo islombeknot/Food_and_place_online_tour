@@ -1,23 +1,43 @@
 {%extends 'base.html'%}
 {%block content%}
 
-{% for food_place in food_places %}
-    <div class="card mb-3">
-       
-        <div class="card-footer">
-            <form action="{% url 'toggle_favorite' %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="food_place_id" value="{{ food_place.id }}">
-                <button type="submit" class="btn btn-primary">
-                    {% if food_place.is_favorite %}
-                        Remove from Favorites
-                    {% else %}
-                        Add to Favorites
-                    {% endif %}
-                </button>
-            </form>
-        </div>
-    </div>
-{% endfor %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food List</title>
+</head>
+<body>
+<h1>Food List</h1>
+<ul>
+    {% for food in foods %}
+    <li>
+        <img src="{{ food.image.url }}" alt="{{ food.name }}">
+        <h2>{{ food.name }}</h2>
+        <p>Price: {{ food.price }}</p>
+        <p>Favorite: {% if food.favorite %} Yes {% else %} No {% endif %}</p>
+        
+    </li>
+    {% endfor %}
+    {% for food_place in food_places %}
+        <li>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ food_place.image.url }}" alt="{{ food_place.name }}">
+                <div class="card-body"></div>
+                <h2>{{ food_place.name }}</h2>
+                <p>Description: {{ food_place.description }}</p>
+                <p>Address: {{ food_place.address }}</p>
+                <p>Favorite Users: 
+                {% for user in food_place.favorite_users.all %}
+                        {{ user.username }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            </p>
+
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
+
 
 {%endblock%}
